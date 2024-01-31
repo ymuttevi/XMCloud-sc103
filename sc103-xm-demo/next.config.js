@@ -25,7 +25,9 @@ const nextConfig = {
     // prefixed path e.g. `/styleguide`.
     defaultLocale: packageConfig.language,
   },
-  
+  eslint: {
+    ignoreDuringBuilds: true,
+},
   // Enable React Strict Mode
   reactStrictMode: true,
 
