@@ -1,19 +1,12 @@
-import type { AppProps } from 'next/app';
-import { I18nProvider } from 'next-localization';
+import { AppProps } from 'next/app';
 
-import 'assets/app.css';
-
-function App({ Component, pageProps }: AppProps): JSX.Element {
-  const { dictionary, ...rest } = pageProps;
-
-  return (
-    // Use the next-localization (w/ rosetta) library to provide our translation dictionary to the app.
-    // Note Next.js does not (currently) provide anything for translation, only i18n routing.
-    // If your app is not multilingual, next-localization and references to it can be removed.
-    <I18nProvider lngDict={dictionary} locale={pageProps.locale}>
-      <Component {...rest} />
-    </I18nProvider>
-  );
+interface CustomPageProps { // <--- your custom page props
+   // your props
 }
 
-export default App;
+function App({ Component, pageProps }: AppProps<CustomPageProps>) {
+                                             //   ^^^ use your custom props here
+  return <Component {...pageProps} />
+                    // ^^^^^ pageProps is now typeof CustomPageProps
+}
+export default App
